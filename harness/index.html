@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Free shipping progress - local preview</title>
+    <link rel="stylesheet" href="./harness.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Free shipping progress: local preview</h1>
+      <p class="note">
+        This page runs the real extension code against a <strong>mocked</strong> checkout API. The
+        <code>s-*</code> elements are crude stand-ins styled in <code>harness.css</code>; Shopify's own
+        components render differently in a real checkout.
+      </p>
+
+      <section aria-labelledby="controls">
+        <h2 id="controls">Mock checkout</h2>
+        <label>Cart subtotal <input id="subtotal" type="number" min="0" step="0.01" value="30" /></label>
+        <label>Cart currency
+          <select id="currency"><option>USD</option><option>CAD</option><option>JPY</option></select>
+        </label>
+        <label>Merchant threshold setting <input id="threshold" type="number" min="0" step="0.01" value="75" /></label>
+        <label>Merchant threshold currency <input id="thresholdCurrency" type="text" value="USD" maxlength="3" /></label>
+      </section>
+
+      <section aria-labelledby="out">
+        <h2 id="out">Extension output (target: purchase.checkout.cart-line-list.render-after)</h2>
+        <div id="mount" class="mount" aria-live="polite"></div>
+      </section>
+    </main>
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>
