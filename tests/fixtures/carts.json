@@ -1,0 +1,18 @@
+[
+  { "name": "empty cart", "subtotal": { "amount": 0, "currencyCode": "USD" }, "threshold": 75, "thresholdCurrency": "USD", "expect": { "kind": "progress", "remaining": 75, "percent": 0 } },
+  { "name": "partway", "subtotal": { "amount": 30, "currencyCode": "USD" }, "threshold": 75, "thresholdCurrency": "USD", "expect": { "kind": "progress", "remaining": 45, "percent": 40 } },
+  { "name": "one cent short never shows 100%", "subtotal": { "amount": 74.99, "currencyCode": "USD" }, "threshold": 75, "thresholdCurrency": "USD", "expect": { "kind": "progress", "remaining": 0.01, "percent": 99 } },
+  { "name": "float sum lands exactly on the threshold", "subtotal": { "amount": 0.30000000000000004, "currencyCode": "USD" }, "threshold": 0.3, "thresholdCurrency": "USD", "expect": { "kind": "unlocked" } },
+  { "name": "exactly at threshold", "subtotal": { "amount": 75, "currencyCode": "USD" }, "threshold": 75, "thresholdCurrency": "USD", "expect": { "kind": "unlocked" } },
+  { "name": "above threshold", "subtotal": { "amount": 120.5, "currencyCode": "USD" }, "threshold": 75, "thresholdCurrency": "USD", "expect": { "kind": "unlocked" } },
+  { "name": "zero-decimal currency (JPY)", "subtotal": { "amount": 4200, "currencyCode": "JPY" }, "threshold": 5000, "thresholdCurrency": "JPY", "expect": { "kind": "progress", "remaining": 800, "percent": 84 } },
+  { "name": "three-decimal currency (KWD)", "subtotal": { "amount": 9.995, "currencyCode": "KWD" }, "threshold": 10, "thresholdCurrency": "KWD", "expect": { "kind": "progress", "remaining": 0.005, "percent": 99 } },
+  { "name": "threshold given as string by the settings layer", "subtotal": { "amount": 50, "currencyCode": "EUR" }, "threshold": "100", "thresholdCurrency": "EUR", "expect": { "kind": "progress", "remaining": 50, "percent": 50 } },
+  { "name": "currency setting empty falls back to checkout currency", "subtotal": { "amount": 10, "currencyCode": "GBP" }, "threshold": 20, "thresholdCurrency": "", "expect": { "kind": "progress", "remaining": 10, "percent": 50 } },
+  { "name": "lowercase currency setting is normalised", "subtotal": { "amount": 10, "currencyCode": "GBP" }, "threshold": 20, "thresholdCurrency": " gbp ", "expect": { "kind": "progress", "remaining": 10, "percent": 50 } },
+  { "name": "buyer in another currency (Markets) hides the bar", "subtotal": { "amount": 40, "currencyCode": "CAD" }, "threshold": 75, "thresholdCurrency": "USD", "expect": { "kind": "hidden", "reason": "currency-mismatch" } },
+  { "name": "merchant has not set a threshold", "subtotal": { "amount": 40, "currencyCode": "USD" }, "threshold": null, "thresholdCurrency": null, "expect": { "kind": "hidden", "reason": "no-threshold" } },
+  { "name": "threshold of zero is invalid", "subtotal": { "amount": 40, "currencyCode": "USD" }, "threshold": 0, "thresholdCurrency": "USD", "expect": { "kind": "hidden", "reason": "invalid-threshold" } },
+  { "name": "negative threshold is invalid", "subtotal": { "amount": 40, "currencyCode": "USD" }, "threshold": -5, "thresholdCurrency": "USD", "expect": { "kind": "hidden", "reason": "invalid-threshold" } },
+  { "name": "non-numeric threshold is invalid", "subtotal": { "amount": 40, "currencyCode": "USD" }, "threshold": "free", "thresholdCurrency": "USD", "expect": { "kind": "hidden", "reason": "invalid-threshold" } }
+]
