@@ -1,0 +1,16 @@
+# Placeholder app config. `shopify app dev` (or `shopify app config link`)
+# fills in client_id for the app YOU create in your own Partner dashboard.
+name = "checkout-extension-demo"
+client_id = ""
+extension_directories = ["extensions/*"]
+application_url = "https://example.com"
+embedded = true
+
+[access_scopes]
+scopes = ""
+
+[auth]
+redirect_urls = ["https://example.com/api/auth"]
+
+[webhooks]
+api_version = "2026-10"

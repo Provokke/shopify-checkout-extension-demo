@@ -1,0 +1,25 @@
+api_version = "2026-10"
+
+[[extensions]]
+name = "Free shipping progress"
+handle = "free-shipping-progress"
+type = "ui_extension"
+description = "Shows buyers how close they are to the free shipping threshold, right under the cart lines."
+
+  [[extensions.targeting]]
+  module = "./src/index.tsx"
+  target = "purchase.checkout.cart-line-list.render-after"
+
+  [extensions.settings]
+
+    [[extensions.settings.fields]]
+    key = "threshold"
+    type = "number_decimal"
+    name = "Free shipping threshold"
+    description = "Subtotal at which shipping becomes free, in the currency below. Leave empty to hide the bar."
+
+    [[extensions.settings.fields]]
+    key = "threshold_currency"
+    type = "single_line_text_field"
+    name = "Threshold currency (ISO 4217)"
+    description = "e.g. USD. The bar is hidden when the buyer checks out in a different currency, so it never shows a wrong amount."
